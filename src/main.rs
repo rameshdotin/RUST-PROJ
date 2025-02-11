@@ -88,6 +88,17 @@ fn main() {
             s.as_ptr()
         );
     }
+
+    let my_string = String::from("My String");
+
+    takes_ownership(my_string);
+
+    // takes_ownership(my_string.clone());
+    // println!("{}", my_string)
+
+    let mut s1 = String::from("Hello");
+    update_string(&mut s1);
+    println!("{} ", s1);
 }
 
 // Function to extract the first word from a given sentence
@@ -103,4 +114,12 @@ fn get_first_word(sentance: String) -> String {
         }
     }
     return ans; // Return the first word
+}
+
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string)
+}
+
+fn update_string(s: &mut String) {
+    s.push_str(" World!");
 }
