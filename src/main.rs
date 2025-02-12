@@ -1,3 +1,26 @@
+use std::collections::HashMap;
+
+struct User {
+    name: String,
+    age: u32,
+    active: bool,
+}
+
+struct Rect {
+    height: u32,
+    width: u32,
+}
+
+impl Rect {
+    fn area(&self) -> u32 {
+        self.height * self.width
+    }
+
+    fn perimeter(&self) -> u32 {
+        return 2 * (self.height + self.width);
+    }
+}
+
 fn main() {
     // Print a greeting message to the console
     println!("Hello, world!");
@@ -99,6 +122,50 @@ fn main() {
     let mut s1 = String::from("Hello");
     update_string(&mut s1);
     println!("{} ", s1);
+
+    let user = User {
+        name: String::from("Ramesh Kumar"),
+        age: 25,
+        active: true,
+    };
+
+    println!(
+        "{} is {} years old and his profile is {}",
+        user.name,
+        user.age,
+        if user.active { "Active" } else { "Deactive" }
+    );
+
+    let rect = Rect {
+        height: 20,
+        width: 30,
+    };
+
+    println!("area of the rectangle is {}", rect.area());
+    println!("perimeter of the rectangle is {}", rect.perimeter());
+
+    let mut vec = Vec::new();
+
+    vec.push(1);
+    vec.push(2);
+    vec.push(3);
+    vec.push(4);
+    vec.push(5);
+
+    println!("{:?}", vec);
+
+    println!("Even Vec: {:?}", even_vec(vec));
+
+    let mut users = HashMap::new();
+    users.insert("Ramesh", 25);
+    users.insert("Vishal", 24);
+
+    let first_user_age = users.get("Ramesh");
+
+    match first_user_age {
+        Some(age) => println!("age is {}", age),
+        None => println!("Not Fount 404"),
+    }
 }
 
 // Function to extract the first word from a given sentence
@@ -122,4 +189,14 @@ fn takes_ownership(some_string: String) {
 
 fn update_string(s: &mut String) {
     s.push_str(" World!");
+}
+
+fn even_vec(vec: Vec<i32>) -> Vec<i32> {
+    let mut ans = Vec::new();
+    for data in vec {
+        if data % 2 == 0 {
+            ans.push(data);
+        }
+    }
+    return ans;
 }
